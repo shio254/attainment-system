@@ -66,9 +66,11 @@
     <div id="result" class="result-area"></div>
 
     <div class="nav-links">
-        <a href="Faculty.html">‹ Back to Faculty info</a>
+        <a href="/faculty">‹ Back to Faculty info</a>
         <br><br>
         <a href="javascript:void(0)" onclick="goToSTRTable()" style="font-weight:bold; color:#1e3a8a;">Go to STR Table ›</a>
+        <br><br>
+        <a href="/dashboard">Back to Dashboard</a>
     </div>
 </div>
 
@@ -164,7 +166,7 @@ function goToSTRTable() {
     localStorage.setItem("programList", JSON.stringify(programs));
    
     // Redirect to the table page
-    window.location.href = "Str_table.html";
+    window.location.href = "/str-table";
 }</script>
 </body>
 </html>
