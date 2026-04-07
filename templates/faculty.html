@@ -62,6 +62,31 @@
         .container {
             overflow-x: auto;
         }
+
+        .faculty-count-control {
+            margin-bottom: 14px;
+            max-width: 320px;
+        }
+
+        .faculty-count-control label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .faculty-count-control input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .serial-number-cell {
+            text-align: center;
+            font-weight: 600;
+            min-width: 70px;
+        }
     </style>
 
 </head>
@@ -70,9 +95,14 @@
     <h2>Faculty Information </h2>
 
     <div class="container">
+        <div class="faculty-count-control">
+            <label for="facultyCountInput">Total Full-Time Faculty</label>
+            <input type="number" id="facultyCountInput" min="0" value="0" placeholder="Enter total faculty">
+        </div>
         <table>
             <thead>
                 <tr>
+                    <th>Sl. No.</th>
                     <th>Name of the Faculty Member</th>
                     <th>Degree(highest degree)</th>
                     <th>University</th>
@@ -93,7 +123,6 @@
             </thead>
             <tbody id="tableBody"></tbody>
         </table>
-        <button onclick="addRow()">+ Add Faculty</button>
     </div>
     <div style="text-align:right;">
         <a href="/dashboard"><button>Back to Dashboard</button></a>
@@ -106,6 +135,7 @@
     </div>
 
     <script>
+        const FACULTY_STORAGE_KEY = "faculty";
         const fieldTypes = [
             "text", "text", "text", "number", "text", "text", "date", "date", "text", "text", "number", "text", "text", "date", "text"
         ];
@@ -115,19 +145,64 @@
                 const res = await fetch('/api/faculty');
                 const savedData = await res.json();
                 savedData.forEach(rowData => createRow(rowData));
+                renumberRows();
+                setFacultyCount(savedData.length);
             } catch (e) {
                 console.error('Failed to load faculty data:', e);
             }
+
+            document.getElementById("facultyCountInput").addEventListener("input", onFacultyCountInput);
         };
-        // Add new row
-        function addRow() {
-            createRow([]);
+
+        function setFacultyCount(count) {
+            const normalized = Math.max(0, parseInt(count, 10) || 0);
+            document.getElementById("facultyCountInput").value = normalized;
+            localStorage.setItem(FACULTY_STORAGE_KEY, String(normalized));
+        }
+
+        function onFacultyCountInput() {
+            const targetCount = Math.max(0, parseInt(this.value, 10) || 0);
+            resizeRowsToCount(targetCount);
             saveData();
         }
+
+        function renumberRows() {
+            const rows = document.querySelectorAll("#tableBody tr");
+            rows.forEach((row, index) => {
+                const serialCell = row.querySelector(".serial-number-cell");
+                if (serialCell) {
+                    serialCell.textContent = index + 1;
+                }
+            });
+        }
+
+        function resizeRowsToCount(targetCount) {
+            const tableBody = document.getElementById("tableBody");
+            let currentCount = tableBody.querySelectorAll("tr").length;
+
+            while (currentCount < targetCount) {
+                createRow([]);
+                currentCount += 1;
+            }
+
+            while (currentCount > targetCount) {
+                tableBody.lastElementChild.remove();
+                currentCount -= 1;
+            }
+
+            renumberRows();
+            setFacultyCount(targetCount);
+        }
+
         // Create row
         function createRow(data) {
             let table = document.getElementById("tableBody");
             let row = document.createElement("tr");
+
+            let serialCell = document.createElement("td");
+            serialCell.className = "serial-number-cell";
+            row.appendChild(serialCell);
+
             fieldTypes.forEach((type, index) => {
                 let cell = document.createElement("td");
                 let input = document.createElement("input");
@@ -142,10 +217,16 @@
             let btn = document.createElement("button");
             btn.innerText = "X";
             btn.className = "delete-btn";
-            btn.onclick = function () { row.remove(); saveData(); };
+            btn.onclick = function () {
+                row.remove();
+                renumberRows();
+                setFacultyCount(document.querySelectorAll("#tableBody tr").length);
+                saveData();
+            };
             deleteCell.appendChild(btn);
             row.appendChild(deleteCell);
             table.appendChild(row);
+            renumberRows();
         }
         // Save all table data to server
         async function saveData() {
