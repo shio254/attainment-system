@@ -925,7 +925,16 @@
                         Faculty
                     </button>
                 </div>
-                <form id="loginForm" novalidate onsubmit="handleSignIn(event)">
+                <form id="loginForm" method="post" action="/login" novalidate onsubmit="handleSignIn(event)">
+                    {% if error %}
+                    <div class="error-message visible" style="display:flex; margin-bottom:14px;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4m0 4h.01" />
+                        </svg>
+                        <span>{{ error }}</span>
+                    </div>
+                    {% endif %}
                     <div class="form-group">
                         <label class="form-label" for="loginEmail">Email Address / Username</label>
                         <div class="input-wrapper">
@@ -934,7 +943,7 @@
                                     <rect width="20" height="16" x="2" y="4" rx="2" />
                                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                                 </svg></span>
-                            <input type="text" class="form-input" id="loginEmail"
+                            <input type="text" class="form-input" id="loginEmail" name="email"
                                 placeholder="Enter your email or username" autocomplete="username" required>
                         </div>
                         <div class="error-message" id="loginEmailErr"><svg width="14" height="14" viewBox="0 0 24 24"
@@ -951,7 +960,7 @@
                                     <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
                                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                                 </svg></span>
-                            <input type="password" class="form-input" id="loginPass" placeholder="Enter your password"
+                            <input type="password" class="form-input" id="loginPass" name="password" placeholder="Enter your password"
                                 autocomplete="current-password" required>
                             <button type="button" class="password-toggle" onclick="togglePw('loginPass',this)"><svg
                                     class="eye-on" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1215,13 +1224,23 @@
             if (!email || email.length < 3) { showErr('loginEmail', 'loginEmailErr'); ok = false }
             if (!pw || pw.length < 6) { showErr('loginPass', 'loginPassErr'); ok = false }
             if (!ok) return;
-            const redirectUrl = getDashboardRedirectUrl();
+            const path = window.location.pathname.toLowerCase();
+            const isStaticMode = window.location.protocol === 'file:' || path.endsWith('.html') || path.includes('/templates/');
             const btn = document.getElementById('signinBtn'); btn.classList.add('loading'); btn.disabled = true;
+
+            if (isStaticMode) {
+                const redirectUrl = getDashboardRedirectUrl();
+                setTimeout(() => {
+                    btn.classList.remove('loading'); btn.disabled = false;
+                    showToast(`Welcome back, ${selectedRole === 'admin' ? 'Administrator' : 'Faculty Member'}! Redirecting...`);
+                    setTimeout(() => { window.location.href = redirectUrl }, 1000);
+                }, 1800);
+                return;
+            }
+
             setTimeout(() => {
-                btn.classList.remove('loading'); btn.disabled = false;
-                showToast(`Welcome back, ${selectedRole === 'admin' ? 'Administrator' : 'Faculty Member'}! Redirecting...`);
-                setTimeout(() => { window.location.href = redirectUrl }, 1000);
-            }, 1800);
+                document.getElementById('loginForm').submit();
+            }, 250);
         }
 
         // ── SIGN UP ──
