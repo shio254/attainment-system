@@ -101,6 +101,16 @@ def str_table():
 def development():
     return render_template("development.html")
 
+@app.route("/six")
+@login_required
+def six():
+    return render_template("six.html")
+
+@app.route("/technical-support")
+@login_required
+def technical_support():
+    return render_template("techincal_support.html")
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
