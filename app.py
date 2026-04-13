@@ -109,7 +109,7 @@ def six():
 @app.route("/technical-support")
 @login_required
 def technical_support():
-    return render_template("techincal_support.html")
+    return render_template("technical_support.html")
 
 @app.route("/dashboard")
 @login_required

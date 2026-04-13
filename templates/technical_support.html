@@ -7,7 +7,7 @@
         body{
             font-family: Arial, sans-serif;
             padding:20px;
-            background:#f4f6f9;
+            background:#f4f6f9; 
         }
         .container{
             max-width:1200px;
@@ -66,6 +66,147 @@
     <button onclick="generateFacilityTable()">Generate Table</button>
     <div id="tableContainer2"></div>
 </div>
+<!-- FOURTH TABLE -->
+<div class="container">
+    <h3>Laboratories Maintenance and Overall Ambiance</h3>
+    <table id="labTable" border="1">
+  <tr>
+    <th>Sl. No.</th>
+    <th>Name of Laboratory</th>
+    <th>Maintenance Practices</th>
+    <th>Frequency</th>
+    <th>Responsible Person/Agency</th>
+    <th>Ambiance Features</th>
+    <th>Remarks</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Basic Electronics Lab</td>
+    <td>Regular equipment calibration, cleaning</td>
+    <td>Monthly</td>
+    <td>Lab Technician</td>
+    <td>Proper lighting, ventilation</td>
+    <td>Satisfactory</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Digital Electronics Lab</td>
+    <td>Preventive maintenance, software updates</td>
+    <td>Monthly</td>
+    <td>Department + Vendor</td>
+    <td>Clean workspace, safety signage</td>
+    <td>Good</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Programming Lab</td>
+    <td>System updates, antivirus checks</td>
+    <td>Weekly</td>
+    <td>System Admin</td>
+    <td>Air-conditioned, ergonomic seating</td>
+    <td>Excellent</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Communication Lab</td>
+    <td>Equipment servicing, cable inspection</td>
+    <td>Quarterly</td>
+    <td>External Vendor</td>
+    <td>Noise-free, organized layout</td>
+    <td>Good</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Project Lab</td>
+    <td>Equipment check, resource management</td>
+    <td>Monthly</td>
+    <td>Lab In-charge</td>
+    <td>Flexible seating, collaborative space</td>
+    <td>Very Good</td>
+  </tr>
+ </table>
+<button onclick="addRow()">Add Row</button>  
+<div id="tableContainer4"></div>
+</div>
+<!-- FIVTH TABLE -->
+<div class="container">
+    <h3>Project Laboratory </h3>
+    <table id="resourceTable" border="1">
+  <tr>
+    <th>Sl. No.</th>
+    <th>Facility/Resource Available</th>
+    <th>Description</th>
+    <th>Utilization</th>
+    <th>No. of Students Benefited</th>
+    <th>Software/Tools Used</th>
+    <th>Outcome/Impact</th>
+  </tr>
+
+  <tr>
+    <td>1</td>
+    <td>High-End Computing</td>
+    <td>Systems with advanced processors for</td>
+    <td>Final year projects</td>
+    <td>40</td>
+    <td>MATLAB, Python</td>
+    <td>Improved project quality</td>
+  </tr>
+
+  <tr>
+    <td>2</td>
+    <td>IoT Development Kits</td>
+    <td>Arduino, Raspberry Pi kits</td>
+    <td>Mini & major projects</td>
+    <td>35</td>
+    <td>Arduino IDE</td>
+    <td>Hands-on learning</td>
+  </tr>
+
+  <tr>
+    <td>3</td>
+    <td>Simulation Software</td>
+    <td>Licensed simulation tools</td>
+    <td>Research & design work</td>
+    <td>30</td>
+    <td>Multisim, Proteus</td>
+    <td>Better conceptual clarity</td>
+  </tr>
+
+  <tr>
+    <td>4</td>
+    <td>Internet & Wi-Fi</td>
+    <td>High-speed connectivity</td>
+    <td>Research & development</td>
+    <td>All students</td>
+    <td>Online tools</td>
+    <td>Access to global resources</td>
+  </tr>
+
+  <tr>
+    <td>5</td>
+    <td>Dedicated Project Space</td>
+    <td>Separate lab for project work</td>
+    <td>Group project execution</td>
+    <td>50</td>
+    <td>Various</td>
+    <td>Collaborative learning</td>
+  </tr>
+
+  <tr>
+    <td>6</td>
+    <td>Printing & Documentation</td>
+    <td>Printing and report preparation facility</td>
+    <td>Report submission</td>
+    <td>All final year</td>
+    <td>MS Office</td>
+    <td>Professional documentation</td>
+  </tr>
+</table>
+
+<button onclick="addRow()">Add Row</button>
+
+    <div id="tableContainer5"></div>
+</div>
 <!-- THIRD TABLE -->
 <div class="container">
     <h3>Safety Measures in Laboratories</h3>
@@ -73,54 +214,8 @@
     <input type="number" id="labCount3">
     <button onclick="generateSafetyTable()">Generate Table</button>
     <div id="tableContainer3"></div>
-</div>
-<!-- FOURTH TABLE -->
-<div class="container">
-    <h3>Laboratories Maintenance and Overall Ambiance</h3>
-    <label>Enter Number of Labs:</label>
-    <input type="number" id="labCount4">
-    <button onclick="generateMaintenanceTable()">Generate Table</button>    
-<div id="tableContainer4"></div>
-</div>
-<!-- FIVTH TABLE -->
-<div class="container">
-    <h3>Project Laboratory </h3>
-    <label>Enter Number of Facility:</label>
-    <input type="number" id="facilityCount1">
-    <button onclick="generateLaboratoryTable()">Generate Table</button>
-    <div id="tableContainer5"></div>
-</div>
-
-<div style="max-width:1200px; margin:0 auto 20px; text-align:right;">
-    <a href="/development">
-        <button type="button">Go to Development</button>
-    </a>
-</div>
 
 <script>
-(function () {
-    const isStaticMode = window.location.protocol === "file:" ||
-        window.location.pathname.endsWith(".html") ||
-        window.location.pathname.includes("/templates/");
-
-    if (!isStaticMode) {
-        return;
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-        const routeToFile = {
-            "/development": "development.html"
-        };
-
-        document.querySelectorAll("a[href]").forEach(function (link) {
-            const target = link.getAttribute("href");
-            if (routeToFile[target]) {
-                link.setAttribute("href", routeToFile[target]);
-            }
-        });
-    });
-})();
-
 function generateLabTable() {
     let labs = document.getElementById("labCount1").value;
 
@@ -193,32 +288,6 @@ function generateFacilityTable() {
     html += `</table>`;
     document.getElementById("tableContainer2").innerHTML = html;
 }
-function generateSafetyTable() {
-    let labs = document.getElementById("labCount3").value;
-    if(labs === "" || labs <= 0){
-        alert("Please enter valid number of labs");
-        return;
-    }
-    let html = `
-    <table>
-        <tr>
-            <th>Sl.No</th>
-            <th>Name of Laboratory</th>
-            <th>Safety Measures</th>
-        </tr>
-    `;
-    for(let i=1; i<=labs; i++){
-        html += `
-        <tr>
-            <td>${i}</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-        </tr>
-        `;
-    }
-    html += `</table>`;
-    document.getElementById("tableContainer3").innerHTML = html;
-}
 function generateMaintenanceTable() {
     let labs = document.getElementById("labCount4").value;
     if(labs === "" || labs <= 0) {
@@ -253,6 +322,22 @@ function generateMaintenanceTable() {
     html += `</table>`;
     document.getElementById("tableContainer4").innerHTML = html;
 }
+function addRow() {
+    var table = document.getElementById("labTable");
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
+
+    for (var i = 0; i < 7; i++) {
+        var cell = row.insertCell(i);
+        if (i === 0) {
+            cell.innerHTML = rowCount; // Auto Sl. No.
+        } else {
+            cell.contentEditable = "true"; // Allow typing
+            cell.innerHTML = "";
+        }
+    }
+}
+
 function generateLaboratoryTable() {
     let count = document.getElementById("facilityCount1").value;
     if(count === "" || count <= 0){
@@ -287,8 +372,48 @@ function generateLaboratoryTable() {
     html += `</table>`;
     document.getElementById("tableContainer5").innerHTML = html;
 }
+function addRow() {
+    var table = document.getElementById("resourceTable");
+    var rowCount = table.rows.length;
+    var row = table.insertRow(rowCount);
 
+    for (var i = 0; i < 7; i++) {
+        var cell = row.insertCell(i);
+        if (i === 0) {
+            cell.innerHTML = rowCount; // Auto Sl. No.
+        } else {
+            cell.contentEditable = "true"; 
+            cell.innerHTML = "";
+        }
+    }
+}
 
+function generateSafetyTable() {
+    let labs = document.getElementById("labCount3").value;
+    if(labs === "" || labs <= 0){
+        alert("Please enter valid number of labs");
+        return;
+    }
+    let html = `
+    <table>
+        <tr>
+            <th>Sl.No</th>
+            <th>Name of Laboratory</th>
+            <th>Safety Measures</th>
+        </tr>
+    `;
+    for(let i=1; i<=labs; i++){
+        html += `
+        <tr>
+            <td>${i}</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+        `;
+    }
+    html += `</table>`;
+    document.getElementById("tableContainer3").innerHTML = html;
+}
 </script>
 </body>
 </html>
