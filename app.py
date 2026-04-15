@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from werkzeug.middleware.proxy_fix import ProxyFix
-import sqlite3
+import psycopg2
+from psycopg2.extras import RealDictCursor
 import json
 import os
 from functools import wraps
@@ -16,13 +17,15 @@ app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['PREFERRED_URL_SCHEME'] = 'https'
 
-DB_PATH = os.path.join(os.path.dirname(__file__), "database.db")
+DATABASE_URL = os.environ.get(
+    'DATABASE_URL',
+    'postgresql://neondb_owner:npg_DJivGH9FXA5t@ep-twilight-flower-a1mp36gk-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require'
+)
 
 # ---------- Database ----------
 
 def connect_db():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
+    conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
     return conn
 
 def init_db():
@@ -31,7 +34,7 @@ def init_db():
     cur = conn.cursor()
     cur.execute("""
         CREATE TABLE IF NOT EXISTS students (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id SERIAL PRIMARY KEY,
             name TEXT, marks REAL, percentage REAL, gp REAL
         )
     """)
@@ -142,7 +145,7 @@ def save_student():
     cur = conn.cursor()
     cur.execute("""
         INSERT INTO students (name, marks, percentage, gp)
-        VALUES (?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s)
     """, (data["name"], data["marks"], data["percentage"], data["gp"]))
     conn.commit()
     conn.close()
@@ -176,7 +179,7 @@ def save_faculty_api():
     conn = connect_db()
     cur = conn.cursor()
     cur.execute(
-        "INSERT OR REPLACE INTO faculty_data (id, data) VALUES (1, ?)",
+        "INSERT INTO faculty_data (id, data) VALUES (1, %s) ON CONFLICT (id) DO UPDATE SET data = EXCLUDED.data",
         (json.dumps(request.json),)
     )
     conn.commit()
@@ -200,7 +203,7 @@ def save_programs():
     conn = connect_db()
     cur = conn.cursor()
     cur.execute(
-        "INSERT OR REPLACE INTO program_list (id, data) VALUES (1, ?)",
+        "INSERT INTO program_list (id, data) VALUES (1, %s) ON CONFLICT (id) DO UPDATE SET data = EXCLUDED.data",
         (json.dumps(request.json),)
     )
     conn.commit()
