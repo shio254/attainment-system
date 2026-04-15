@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from werkzeug.middleware.proxy_fix import ProxyFix
 import sqlite3
 import json
 import os
@@ -6,6 +7,14 @@ from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'obe-portal-secret-key-2024')
+
+# ---- Production settings for Render (reverse proxy + HTTPS) ----
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
+app.config['SESSION_COOKIE_SECURE'] = os.environ.get('RENDER', False) and True
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['PREFERRED_URL_SCHEME'] = 'https'
+
 DB_PATH = os.path.join(os.path.dirname(__file__), "database.db")
 
 # ---------- Database ----------
