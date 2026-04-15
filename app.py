@@ -8,9 +8,10 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'obe-portal-secret-key-2024')
 
-# ---- Production settings for Render (reverse proxy + HTTPS) ----
+# ---- Production settings for Render / Railway (reverse proxy + HTTPS) ----
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
-app.config['SESSION_COOKIE_SECURE'] = os.environ.get('RENDER', False) and True
+is_production = os.environ.get('RENDER') or os.environ.get('RAILWAY_ENVIRONMENT')
+app.config['SESSION_COOKIE_SECURE'] = bool(is_production)
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['PREFERRED_URL_SCHEME'] = 'https'
