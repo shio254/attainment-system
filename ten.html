@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vision & Mission Table</title>
+    <style>
+      body{
+            font-family: Arial, sans-serif;
+            padding:20px;
+            background:#f4f6f9; 
+        }
+        .container{
+            max-width:1200px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+        h2,h3{
+            text-align:center;
+        }
+        input{
+            padding:8px;
+            margin:10px 0;
+            width:100%;
+            box-sizing:border-box;
+        }
+        button{
+            padding:10px 20px;
+            background:#1e3a8a;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+        th,td{
+            border:1px solid black;
+            padding:8px;
+            text-align:center;
+        }        
+   
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Vision & Mission</h2>
+    <table>
+        <tr>
+            <th>SL No.</th>
+            <th>Particulars</th>
+            <th>Details</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Vision Statement</td>
+            <td><textarea id="vision"></textarea></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Mission Statement</td>
+            <td><textarea id="mission"></textarea></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Approval Authority</td>
+            <td><input type="text" id="authority" style="width:100%"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Date of Approval</td>
+            <td><input type="date" id="date" style="width:100%"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Dissemination (Website/Prospectus etc.)</td>
+            <td><textarea id="dissemination"></textarea></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Stakeholder Awareness</td>
+            <td><textarea id="stakeholder"></textarea></td>
+        </tr>
+    </table>
+    <button onclick="saveData()">Save Details</button>
+<div>
+    <h2>Table for Governance & Administrative Setup</h2>
+    <table>
+        <tr>
+            <th>Sl. No.</th>
+            <th>Name of Body</th>
+            <th>Members</th>
+            <th>Functions & Responsibilities</th>
+            <th>Meeting Frequency</th>
+            <th>Attendance (%)</th>
+            <th>Remarks</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Governing Body</td>
+            <td><textarea id="m1"></textarea></td>
+            <td><textarea id="f1"></textarea></td>
+            <td><input type="text" id="freq1"></td>
+            <td><input type="number" id="att1"></td>
+            <td><input type="text" id="rem1"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Academic Council</td>
+            <td><textarea id="m2"></textarea></td>
+            <td><textarea id="f2"></textarea></td>
+            <td><input type="text" id="freq2"></td>
+            <td><input type="number" id="att2"></td>
+            <td><input type="text" id="rem2"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Finance Committee</td>
+            <td><textarea id="m3"></textarea></td>
+            <td><textarea id="f3"></textarea></td>
+            <td><input type="text" id="freq3"></td>
+            <td><input type="number" id="att3"></td>
+            <td><input type="text" id="rem3"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Other Committees</td>
+            <td><textarea id="m4"></textarea></td>
+            <td><textarea id="f4"></textarea></td>
+            <td><input type="text" id="freq4"></td>
+            <td><input type="number" id="att4"></td>
+            <td><input type="text" id="rem4"></td>
+        </tr>
+    </table>
+    <button onclick="saveData2()">Save Data</button>
+</div>
+<div>
+    <h2>Additional Table (Policies & Rules)</h2>
+    <table id="policyTable">
+        <thead>
+            <tr>
+                <th>SL No.</th>
+                <th>Policy/Rule</th>
+                <th>Year of Publication</th>
+                <th>Applicable To</th>
+                <th>Awareness Level (%)</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>1</td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+                <td><input type="text"></td>
+                <td><input type="number"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow1()">Add Row</button>
+    <button onclick="saveData3()">Save Data</button>
+</div>
+<div>
+<h2>Decentralization & Grievance Redressal</h2>
+<h3> Delegation of Powers</h3>
+<table id="tableA">
+    <thead>
+        <tr>
+            <th>Sl. No.</th>
+            <th>Name of Faculty</th>
+            <th>Designation</th>
+            <th>Responsibility Assigned</th>
+            <th>Decision Authority</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+        </tr>
+    </tbody>
+</table>
+<button onclick="addRow2()">Add Row</button>
+<h3>Grievance Redressal Mechanism</h3>
+<table>
+    <tr>
+        <th>Sl. No.</th>
+        <th>Committee Name</th>
+        <th>Composition</th>
+        <th>Role/Function</th>
+        <th>Frequency of Meetings</th>
+        <th>Cases Handled</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Grievance Cell</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Anti-Ragging Committe</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Sexual Harassment Committe</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<div>
+<h2>Delegation of Financial Powers</h2>
+<table id="financialTable">
+    <tr>
+        <th>Sl. No.</th>
+        <th>Authority</th>
+        <th>Financial Power Limit</th>
+        <th>Area of Utilization</th>
+        <th>Year</th>
+        <th>Remarks</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Principal</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>HOD</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Lab In-charge</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+</table>
+<h2> Transparency & Information Availability</h2>
+<table>
+    <tr>
+        <th>Sl. No.</th>
+        <th>Information Type</th>
+        <th>Available (Yes/No)</th>
+        <th>URL/Location</th>
+        <th>Last Updated</th>
+        <th>Remarks</th>
+    </tr>
+    <tr><td>1</td><td>Policies</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    <tr><td>2</td><td>Rules</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    <tr><td>3</td><td>Procedures</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    <tr><td>4</td><td>Notices</td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+</table>
+</div>
+<div class="container">
+<h2> Adequacy of Budget Allocation</h2>
+<table id="budgetTable">
+    <tr>
+        <th>Year</th>
+        <th>Budget Allocated</th>
+        <th>Requirement</th>
+        <th>Gap (if any)</th>
+        <th>Justification</th>
+        <th>Remarks</th>
+    </tr>
+    <tr><td>CFY</td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    <tr><td>CFYm1</td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    <tr><td>CFYm2</td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+    <tr><td>CFYm3</td><td><input></td><td><input></td><td><input></td><td><input></td><td><input></td></tr>
+</table>
+<h2>Utilization of Allocated Funds</h2>
+<table id="fundTable">
+    <tr>
+        <th>Year</th>
+        <th>Budget Allocated</th>
+        <th>Actual Expenditure</th>
+        <th>Utilization (%)</th>
+        <th>Major Heads of Spending</th>
+        <th>Remarks</th>
+    </tr>
+    <tr>
+        <td>CFY</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>CFYm1</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>CFYm2</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>CFYm3</td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+</table>
+<h2>Audited Statements Availability</h2>
+<table id="auditTable">
+    <tr>
+        <th>Sl. No.</th>
+        <th>Financial Year</th>
+        <th>Audit Completed</th>
+        <th>Available on Website</th>
+        <th>URL</th>
+        <th>Remarks</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>CFY</td>
+        <td>
+            <select>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </td>
+        <td>
+            <select>
+                <option>Yes</option>
+                <option>No</option>
+            </select>
+        </td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>CFYm1</td>
+        <td><select><option>Yes</option><option>No</option></select></td>
+        <td><select><option>Yes</option><option>No</option></select></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>CFYm2</td>
+        <td><select><option>Yes</option><option>No</option></select></td>
+        <td><select><option>Yes</option><option>No</option></select></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>CFYm3</td>
+        <td><select><option>Yes</option><option>No</option></select></td>
+        <td><select><option>Yes</option><option>No</option></select></td>
+        <td><input></td>
+        <td><input></td>
+    </tr>
+</table>
+</div>
+<div class="container">
+<h2>Program Budget Adequacy</h2>
+<table id="adequacyTable">
+    <tr>
+        <th>Year</th>
+        <th>Program Budget</th>
+        <th>Requirement</th>
+        <th>Gap</th>
+        <th>Justification</th>
+        <th>Remarks</th>
+    </tr>
+</table>
+<button onclick="addAdequacyRow3()">Add Row</button>
+<h2>Program Budget Utilization</h2>
+<table id="utilTable">
+    <tr>
+        <th>Year</th>
+        <th>Budget Allocated</th>
+        <th>Actual Expenditure</th>
+        <th>Utilization (%)</th>
+        <th>Major Heads</th>
+        <th>Remarks</th>
+    </tr>
+</table>
+<button onclick="addUtilRow4()">Add Row</button>
+</div>
+<div class="container">
+<h2>Learning Resources</h2>
+<table id="resourceTable">
+    <tr>
+        <th>Sl. No.</th>
+        <th>Resource Type</th>
+        <th>Availability</th>
+        <th>Accessibility</th>
+        <th>Usage Level</th>
+        <th>Remarks</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Books</td>
+        <td><input></td>
+        <td><input></td>
+        <td>
+            <select>
+                <option>High</option>
+                <option>Medium</option>
+                <option>Low</option>
+            </select>
+        </td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>E-Resources</td>
+        <td><input></td>
+        <td><input></td>
+        <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Journals</td>
+        <td><input></td>
+        <td><input></td>
+        <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+        <td><input></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Digital Library</td>
+        <td><input></td>
+        <td><input></td>
+        <td><select><option>High</option><option>Medium</option><option>Low</option></select></td>
+        <td><input></td>
+    </tr>
+</table>
+<h2>Internet Facilities</h2>
+<table id="internetTable">
+    <tr>
+        <th>Sl. No.</th>
+        <th>Parameter</th>
+        <th>Details</th>
+    </tr>
+    <tr><td>1</td><td>Internet Provider</td><td><input></td></tr>
+    <tr><td>2</td><td>Bandwidth</td><td><input></td></tr>
+    <tr><td>3</td><td>Wi-Fi Availability</td><td><input></td></tr>
+    <tr><td>4</td><td>Access Locations</td><td><input></td></tr>
+    <tr><td>5</td><td>Security Measures</td><td><input></td></tr>
+</table>
+</div>
+
+<script>
+function saveData1() {
+    const data = {
+        vision: document.getElementById("vision").value,
+        mission: document.getElementById("mission").value,
+        authority: document.getElementById("authority").value,
+        date: document.getElementById("date").value,
+        dissemination: document.getElementById("dissemination").value,
+        stakeholder: document.getElementById("stakeholder").value
+    };
+    console.log(data);
+    alert("Data saved! Check console.");
+}
+function saveData2() {
+    const data = [
+        {
+            body: "Governing Body",
+            members: document.getElementById("m1").value,
+            functions: document.getElementById("f1").value,
+            frequency: document.getElementById("freq1").value,
+            attendance: document.getElementById("att1").value,
+            remarks: document.getElementById("rem1").value
+        },
+        {
+            body: "Academic Council",
+            members: document.getElementById("m2").value,
+            functions: document.getElementById("f2").value,
+            frequency: document.getElementById("freq2").value,
+            attendance: document.getElementById("att2").value,
+            remarks: document.getElementById("rem2").value
+        },
+        {
+            body: "Finance Committee",
+            members: document.getElementById("m3").value,
+            functions: document.getElementById("f3").value,
+            frequency: document.getElementById("freq3").value,
+            attendance: document.getElementById("att3").value,
+            remarks: document.getElementById("rem3").value
+        },
+        {
+            body: "Other Committees",
+            members: document.getElementById("m4").value,
+            functions: document.getElementById("f4").value,
+            frequency: document.getElementById("freq4").value,
+            attendance: document.getElementById("att4").value,
+            remarks: document.getElementById("rem4").value
+        }
+    ];
+    console.log(data);
+    alert("Data saved! Check console.");
+}
+let count = 1;
+function addRow1() {
+    count++;
+    let table = document.getElementById("tableBody");
+    let row = table.insertRow();
+    row.innerHTML = `
+        <td>${count}</td>
+        <td><input type="text"></td>
+        <td><input type="number"></td>
+        <td><input type="text"></td>
+        <td><input type="number"></td>
+    `;
+}
+function saveData3() {
+    let table = document.getElementById("tableBody");
+    let rows = table.rows;
+    let data = [];
+    for (let i = 0; i < rows.length; i++) {
+        let inputs = rows[i].getElementsByTagName("input");
+        data.push({
+            policy: inputs[0].value,
+            year: inputs[1].value,
+            applicable: inputs[2].value,
+            awareness: inputs[3].value
+        });
+    }
+    console.log(data);
+    alert("Data saved! Check console.");
+}
+function addRow2() {
+    let table = document.getElementById("tableA").getElementsByTagName('tbody')[0];
+    let rowCount = table.rows.length + 1;
+    let row = table.insertRow();
+    row.innerHTML = `
+        <td>${rowCount}</td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+    `;
+}
+function addAdequacyRow3() {
+    let table = document.getElementById("adequacyTable");
+    let row = table.insertRow();
+    row.innerHTML = `
+        <td><input></td>
+        <td><input type="number"></td>
+        <td><input type="number"></td>
+        <td><input type="number"></td>
+        <td><input></td>
+        <td><input></td>
+    `;
+}
+function addUtilRow4() {
+    let table = document.getElementById("utilTable");
+    let row = table.insertRow();
+    row.innerHTML = `
+        <td><input></td>
+        <td><input type="number" class="budget"></td>
+        <td><input type="number" class="actual"></td>
+        <td><input class="util" readonly></td>
+        <td><input></td>
+        <td><input></td>
+    `;
+    attachCalculation(row);
+}
+function attachCalculation(row) {
+    let budget = row.querySelector(".budget");
+    let actual = row.querySelector(".actual");
+    let util = row.querySelector(".util");
+    function calculate() {
+        let b = parseFloat(budget.value);
+        let a = parseFloat(actual.value);
+        if (b && a) {
+            util.value = ((a / b) * 100).toFixed(2);
+        } else {
+            util.value = "";
+        }
+    }
+    budget.addEventListener("input", calculate);
+    actual.addEventListener("input", calculate);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mentoring System Table</title>
+    <style>
+ body{
+            font-family: Arial, sans-serif;
+            padding:20px;
+            background:#f4f6f9; 
+        }
+        .container{
+            max-width:1200px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+        h2,h3{
+            text-align:center;
+        }
+        input{
+            padding:8px;
+            margin:10px 0;
+            width:100%;
+            box-sizing:border-box;
+        }
+        button{
+            padding:10px 20px;
+            background:#1e3a8a;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+        th,td{
+            border:1px solid black;
+            padding:8px;
+            text-align:center;
+        }        
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Mentoring System to Help at Individual Level</h2>
+    <table id="mentorTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Type of Mentoring</th>
+                <th>No. of Faculty Mentors</th>
+                <th>No. of Students per Mentor</th>
+                <th>Frequency of Meetings</th>
+                <th>Areas Covered</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Academic Mentoring</td>
+                <td>10</td>
+                <td>20</td>
+                <td>Monthly</td>
+                <td>Course performance, attendance</td>
+                <td>Effective</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Career Guidance</td>
+                <td>8</td>
+                <td>25</td>
+                <td>Quarterly</td>
+                <td>Higher studies, placements</td>
+                <td>Good</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Personal Counseling</td>
+                <td>5</td>
+                <td>30</td>
+                <td>As required</td>
+                <td>Stress, personal issues</td>
+                <td>Supportive</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>All-round Development</td>
+                <td>10</td>
+                <td>20</td>
+                <td>Monthly</td>
+                <td>Technical & soft skills</td>
+                <td>Very Good</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow1()">Add Row </button>
+</div>
+<div class="container">
+    <h2>Feedback Analysis and Corrective Measures</h2>
+    <table id="feedbackTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Parameter</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Feedback Collected for All Courses</td><td>Yes</td></tr>
+            <tr><td>2</td><td>Feedback Collection Method</td><td>Online/Offline (Google Forms)</td></tr>
+            <tr><td>3</td><td>Student Participation (%)</td><td>85%</td></tr>
+            <tr><td>4</td><td>Feedback Analysis Method</td><td>Statistical analysis (Average, Index)</td></tr>
+            <tr><td>5</td><td>Quality Indices Used</td><td>Teaching effectiveness, content delivery</td></tr>
+            <tr><td>6</td><td>Average Feedback Score</td><td>3.8 / 5</td></tr>
+            <tr><td>7</td><td>Corrective Actions Taken</td><td>Faculty training, syllabus revision</td></tr>
+            <tr><td>8</td><td>Reward Mechanism</td><td>Best faculty recognition</td></tr>
+            <tr><td>9</td><td>No. of Corrective Actions</td><td>5</td></tr>
+        </tbody>
+    </table>
+    <button onclick="addRow2()">Add Row </button>
+</div>
+<div class="container">
+    <h2>Feedback on Facilities</h2>
+    <table id="facilityTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Facility</th>
+                <th>Feedback Method</th>
+                <th>Key Issues Identified</th>
+                <th>Action Taken</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Classrooms</td>
+                <td>Survey</td>
+                <td>Poor ventilation</td>
+                <td>Improved ventilation</td>
+                <td>Resolved</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Laboratories</td>
+                <td>Feedback form</td>
+                <td>Equipment shortage</td>
+                <td>Procured equipment</td>
+                <td>Completed</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Library</td>
+                <td>Online feedback</td>
+                <td>Limited books</td>
+                <td>Added new books</td>
+                <td>Ongoing</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Wi-Fi</td>
+                <td>Student feedback</td>
+                <td>Slow internet</td>
+                <td>Upgraded bandwidth</td>
+                <td>Resolved</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow3()">Add Row</button>
+</div>
+<div class="container">
+    <h2>Self-Learning Facilities</h2>
+    <table id="learningTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Facility</th>
+                <th>Description</th>
+                <th>Utilization</th>
+                <th>Effectiveness</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>MOOCs (NPTEL, Coursera)</td>
+                <td>Online certification courses</td>
+                <td>High</td>
+                <td>Improved knowledge</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Webinars</td>
+                <td>Expert sessions</td>
+                <td>Moderate</td>
+                <td>Skill enhancement</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Digital Library</td>
+                <td>E-books, journals</td>
+                <td>High</td>
+                <td>Research support</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Podcasts/YouTube Learning</td>
+                <td>Supplementary learning</td>
+                <td>Moderate</td>
+                <td>Flexible learning</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow4()">Add Row</button>
+</div>
+<div class="container">
+    <h2>Career Guidance, Training, Placement</h2>
+    <table id="careerTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Facility</th>
+                <th>Description</th>
+                <th>Activities Conducted</th>
+                <th>Students Benefited</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Training & Placement Cell</td>
+                <td>Placement support</td>
+                <td>Aptitude training</td>
+                <td>120</td>
+                <td>Increased placements</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Career Counseling</td>
+                <td>Higher studies guidance</td>
+                <td>Workshops</td>
+                <td>80</td>
+                <td>Better awareness</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Industry Interaction</td>
+                <td>Guest lectures</td>
+                <td>Seminars</td>
+                <td>100</td>
+                <td>Industry exposure</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Internship Support</td>
+                <td>Internship facilitation</td>
+                <td>Tie-ups</td>
+                <td>90</td>
+                <td>Practical exposure</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow5()">Add Row</button>
+</div>
+<div class="container">
+    <h2>Entrepreneurship Cell</h2>
+    <table id="entrepreneurTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Facility</th>
+                <th>Description</th>
+                <th>Activities</th>
+                <th>Students Involved</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>E-Cell</td>
+                <td>Entrepreneurship support</td>
+                <td>Startup workshops</td>
+                <td>50</td>
+                <td>Idea development</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Incubation Support</td>
+                <td>Mentorship & funding</td>
+                <td>Startup guidance</td>
+                <td>20</td>
+                <td>Startup creation</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Innovation Programs</td>
+                <td>Hackathons</td>
+                <td>Competitions</td>
+                <td>60</td>
+                <td>Innovation skills</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow6()">Add Row</button>
+</div>
+<div class="container">
+    <h2>Co-curricular and Extra-curricular Activities</h2>
+    <table id="activityTable">
+        <thead>
+            <tr>
+                <th>Sl. No.</th>
+                <th>Activity Type</th>
+                <th>Activity Name</th>
+                <th>No. of Events</th>
+                <th>Student Participation</th>
+                <th>Outcome</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Co-curricular</td>
+                <td>Technical workshops</td>
+                <td>10</td>
+                <td>200</td>
+                <td>Skill enhancement</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Co-curricular</td>
+                <td>Seminars/Webinars</td>
+                <td>8</td>
+                <td>150</td>
+                <td>Knowledge gain</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Extra-curricular</td>
+                <td>Sports events</td>
+                <td>6</td>
+                <td>180</td>
+                <td>Physical fitness</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Extra-curricular</td>
+                <td>Cultural events</td>
+                <td>5</td>
+                <td>160</td>
+                <td>Creativity</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>NSS/NCC</td>
+                <td>Social activities</td>
+                <td>4</td>
+                <td>120</td>
+                <td>Social awareness</td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="addRow7()">Add Row</button>
+</div>
+<script>
+function addRow1() {
+    let table = document.getElementById("mentorTable").getElementsByTagName('tbody')[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Enter mentoring type"></td>
+        <td><input type="number" placeholder="Faculty"></td>
+        <td><input type="number" placeholder="Students"></td>
+        <td><input type="text" placeholder="Frequency"></td>
+        <td><input type="text" placeholder="Areas covered"></td>
+        <td><input type="text" placeholder="Remarks"></td>
+    `;
+}
+function addRow2() {
+    let table = document.getElementById("feedbackTable").getElementsByTagName("tbody")[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Enter parameter"></td>
+        <td><input type="text" placeholder="Enter details"></td>
+    `;
+}
+function addRow3() {
+    let table = document.getElementById("facilityTable").getElementsByTagName("tbody")[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Enter facility"></td>
+        <td><input type="text" placeholder="Feedback method"></td>
+        <td><input type="text" placeholder="Issue identified"></td>
+        <td><input type="text" placeholder="Action taken"></td>
+        <td><input type="text" placeholder="Status"></td>
+    `;
+}
+function addRow4() {
+    let table = document.getElementById("learningTable").getElementsByTagName("tbody")[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Enter facility"></td>
+        <td><input type="text" placeholder="Enter description"></td>
+        <td><input type="text" placeholder="Utilization"></td>
+        <td><input type="text" placeholder="Effectiveness"></td>
+    `;
+}
+function addRow5() {
+    let table = document.getElementById("careerTable").getElementsByTagName("tbody")[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Enter facility"></td>
+        <td><input type="text" placeholder="Enter description"></td>
+        <td><input type="text" placeholder="Activities conducted"></td>
+        <td><input type="number" placeholder="Students"></td>
+        <td><input type="text" placeholder="Outcome"></td>
+    `;
+}
+function addRow6() {
+    let table = document.getElementById("entrepreneurTable").getElementsByTagName("tbody")[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Enter facility"></td>
+        <td><input type="text" placeholder="Enter description"></td>
+        <td><input type="text" placeholder="Enter activity"></td>
+        <td><input type="number" placeholder="Students"></td>
+        <td><input type="text" placeholder="Outcome"></td>
+    `;
+}
+function addRow7() {
+    let table = document.getElementById("activityTable").getElementsByTagName("tbody")[0];
+    let rowCount = table.rows.length;
+    let newRow = table.insertRow(rowCount);
+    newRow.innerHTML = `
+        <td>${rowCount + 1}</td>
+        <td><input type="text" placeholder="Activity type"></td>
+        <td><input type="text" placeholder="Activity name"></td>
+        <td><input type="number" placeholder="Events"></td>
+        <td><input type="number" placeholder="Participation"></td>
+        <td><input type="text" placeholder="Outcome"></td>
+    `;
+}
+
+
+</script>
+</body>
+</html>

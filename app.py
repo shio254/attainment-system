@@ -117,7 +117,7 @@ def development():
 @app.route("/six")
 @login_required
 def six():
-    return render_template("six.html")
+    return render_template("technical_support.html")
 
 @app.route("/technical-support")
 @login_required

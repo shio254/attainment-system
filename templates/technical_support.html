@@ -66,7 +66,7 @@
     <button onclick="generateFacilityTable()">Generate Table</button>
     <div id="tableContainer2"></div>
 </div>
-<!-- FOURTH TABLE -->
+<!-- THIRD TABLE -->
 <div class="container">
     <h3>Laboratories Maintenance and Overall Ambiance</h3>
     <table id="labTable" border="1">
@@ -125,10 +125,10 @@
     <td>Very Good</td>
   </tr>
  </table>
-<button onclick="addRow()">Add Row</button>  
-<div id="tableContainer4"></div>
+<button onclick="addRow1()">Add Row</button>  
+<div id="tableContainer3"></div>
 </div>
-<!-- FIVTH TABLE -->
+<!-- FOURTH TABLE -->
 <div class="container">
     <h3>Project Laboratory </h3>
     <table id="resourceTable" border="1">
@@ -203,17 +203,17 @@
   </tr>
 </table>
 
-<button onclick="addRow()">Add Row</button>
+<button onclick="addRow2()">Add Row</button>
 
-    <div id="tableContainer5"></div>
+    <div id="tableContainer4"></div>
 </div>
-<!-- THIRD TABLE -->
+<!-- FIVTH TABLE -->
 <div class="container">
     <h3>Safety Measures in Laboratories</h3>
     <label>Enter Number of Labs:</label>
     <input type="number" id="labCount3">
     <button onclick="generateSafetyTable()">Generate Table</button>
-    <div id="tableContainer3"></div>
+    <div id="tableContainer5"></div>
 
 <script>
 function generateLabTable() {
@@ -320,9 +320,9 @@ function generateMaintenanceTable() {
         `;
     }
     html += `</table>`;
-    document.getElementById("tableContainer4").innerHTML = html;
+    document.getElementById("tableContainer3").innerHTML = html;
 }
-function addRow() {
+function addRow1() {
     var table = document.getElementById("labTable");
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
@@ -370,9 +370,9 @@ function generateLaboratoryTable() {
         `;
     }
     html += `</table>`;
-    document.getElementById("tableContainer5").innerHTML = html;
+    document.getElementById("tableContainer4").innerHTML = html;
 }
-function addRow() {
+function addRow2() {
     var table = document.getElementById("resourceTable");
     var rowCount = table.rows.length;
     var row = table.insertRow(rowCount);
@@ -412,7 +412,7 @@ function generateSafetyTable() {
         `;
     }
     html += `</table>`;
-    document.getElementById("tableContainer3").innerHTML = html;
+    document.getElementById("tableContainer5").innerHTML = html;
 }
 </script>
 </body>
