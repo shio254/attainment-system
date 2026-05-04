@@ -244,12 +244,47 @@
             { name: "Ms. Paul", qualification: "M.Sc" }
         ];
 
+        function readLocalJson(key, fallback) {
+            try {
+                return JSON.parse(localStorage.getItem(key)) || fallback;
+            } catch (e) {
+                return fallback;
+            }
+        }
+
+        async function getPrograms() {
+            if (isStaticMode) return mockPrograms;
+
+            const response = await fetch('/api/programs');
+            const programs = await response.json();
+
+            if (Array.isArray(programs) && programs.length > 0) {
+                return programs;
+            }
+
+            return readLocalJson('programList', []);
+        }
+
+        async function getFaculty() {
+            if (isStaticMode) return mockFaculty;
+
+            const response = await fetch('/api/faculty');
+            const faculty = await response.json();
+            return Array.isArray(faculty) ? faculty : [];
+        }
+
+        function getFacultyQualification(facultyRow) {
+            if (Array.isArray(facultyRow)) {
+                return facultyRow[1] || '';
+            }
+
+            return facultyRow.qualification || facultyRow.degree || '';
+        }
+
         async function loadDashboard() {
             // --- Load Programs from server API ---
             try {
-                const programs = isStaticMode
-                    ? mockPrograms
-                    : await (await fetch('/api/programs')).json();
+                const programs = await getPrograms();
 
                 const ugCount = programs.filter(p => p.type === 'UG').length;
                 const pgCount = programs.filter(p => p.type === 'PG').length;
@@ -283,9 +318,7 @@
 
             // --- Load Faculty from server API ---
             try {
-                const faculty = isStaticMode
-                    ? mockFaculty
-                    : await (await fetch('/api/faculty')).json();
+                const faculty = await getFaculty();
                 const totalFaculty = Array.isArray(faculty) ? faculty.length : 0;
 
                 document.getElementById('stat-faculty').innerText = totalFaculty;
@@ -295,8 +328,8 @@
                 document.getElementById('faculty-loading').style.display = 'none';
 
                 // Count PhD vs M.Tech from designation/qualification field
-                const phd = faculty.filter(f => f.qualification && f.qualification.toLowerCase().includes('ph.d')).length;
-                const mtech = faculty.filter(f => f.qualification && f.qualification.toLowerCase().includes('m.tech')).length;
+                const phd = faculty.filter(f => getFacultyQualification(f).toLowerCase().includes('ph.d')).length;
+                const mtech = faculty.filter(f => getFacultyQualification(f).toLowerCase().includes('m.tech')).length;
                 const other = totalFaculty - phd - mtech;
 
                 facultyChartInst = new Chart(document.getElementById('facultyChart'), {
@@ -312,9 +345,7 @@
                 });
 
                 // STR stat
-                const programs2 = isStaticMode
-                    ? mockPrograms
-                    : await (await fetch('/api/programs')).json();
+                const programs2 = await getPrograms();
                 document.getElementById('stat-students').innerText = programs2.length > 0 ? '(enter in STR page)' : '--';
                 document.getElementById('stat-str').innerText = totalFaculty > 0 ? 'See STR page' : '--';
 

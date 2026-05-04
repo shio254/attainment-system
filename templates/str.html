@@ -197,7 +197,7 @@ function calculateFinal() {
     localStorage.setItem("totalStudents", totalS);
     localStorage.setItem("faculty", faculty);
 }
-function goToSTRTable() {
+async function goToSTRTable() {
     const programs = [];
     // Select all blocks to get the specific names and types entered by the user
     document.querySelectorAll('.program-block').forEach(block => {
@@ -209,6 +209,18 @@ function goToSTRTable() {
 
     // Save the list of programs so Page 2 can see them
     localStorage.setItem("programList", JSON.stringify(programs));
+
+    if (!isStaticMode()) {
+        try {
+            await fetch('/api/programs', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(programs)
+            });
+        } catch (e) {
+            console.error('Failed to save program data:', e);
+        }
+    }
    
     // Redirect to the table page
     window.location.href = isStaticMode() ? "str_table.html" : "/str-table";

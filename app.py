@@ -175,7 +175,8 @@ def get_students():
     conn = connect_db()
     cur = conn.cursor()
     # Table is guaranteed to exist because init_db() runs on startup
-    rows = cur.execute("SELECT * FROM students").fetchall()
+    cur.execute("SELECT * FROM students")
+    rows = cur.fetchall()
     result = [dict(row) for row in rows]
     conn.close()
     return jsonify(result)
@@ -187,7 +188,8 @@ def get_students():
 def get_faculty():
     conn = connect_db()
     cur = conn.cursor()
-    row = cur.execute("SELECT data FROM faculty_data WHERE id = 1").fetchone()
+    cur.execute("SELECT data FROM faculty_data WHERE id = 1")
+    row = cur.fetchone()
     conn.close()
     return jsonify(json.loads(row['data']) if row else [])
 
@@ -211,7 +213,8 @@ def save_faculty_api():
 def get_programs():
     conn = connect_db()
     cur = conn.cursor()
-    row = cur.execute("SELECT data FROM program_list WHERE id = 1").fetchone()
+    cur.execute("SELECT data FROM program_list WHERE id = 1")
+    row = cur.fetchone()
     conn.close()
     return jsonify(json.loads(row['data']) if row else [])
 
