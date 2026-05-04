@@ -46,9 +46,37 @@
         }        
    
     </style>
+    <script>
+        (function () {
+            const isStaticMode = window.location.protocol === "file:" ||
+                window.location.pathname.endsWith(".html") ||
+                window.location.pathname.includes("/templates/");
+
+            if (!isStaticMode) {
+                return;
+            }
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const routeToFile = {
+                    "/technical-support": "technical_support.html",
+                    "/six": "technical_support.html",
+                    "/seven": "seven.html",
+                    "/nine": "nine.html",
+                    "/ten": "ten.html"
+                };
+
+                document.querySelectorAll("a[href]").forEach(function (link) {
+                    const target = link.getAttribute("href");
+                    if (routeToFile[target]) {
+                        link.setAttribute("href", routeToFile[target]);
+                    }
+                });
+            });
+        })();
+    </script>
 </head>
 <body>
-<div class="container">
+<div>
     <h2>Vision & Mission</h2>
     <table>
         <tr>
@@ -477,6 +505,11 @@
     <tr><td>4</td><td>Access Locations</td><td><input></td></tr>
     <tr><td>5</td><td>Security Measures</td><td><input></td></tr>
 </table>
+</div>
+<div style="text-align:right; margin-top:10px;">
+    <a href="/nine">
+        <button>Back to Mentoring System</button>
+    </a>
 </div>
 
 <script>

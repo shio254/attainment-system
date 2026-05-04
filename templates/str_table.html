@@ -58,12 +58,28 @@
         input:focus { outline: 2px solid #0056b3; }
         .btn-calc { display: block; width: 200px; margin: 20px auto; padding: 12px; background: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .btn-calc:hover { background: #004494; }
+        #researchTable {
+            table-layout: auto;
+        }
+        #researchTable th,
+        #researchTable td {
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+        }
+        #researchTable input,
+        #researchTable select,
+        #researchTable textarea {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
     </style>
 </head>
 <body>
 
 
-<div class="container">
+<div>
     <h2>Student Teacher Ratio (STR) = S / F</h2>
     
     <table id="strTable">
@@ -113,7 +129,7 @@
     <a href="/str" class="nav-link">← Back to Program Setup</a>
 </div>
 
-<div class="container">
+<div>
     <h2>Faculty Details</h2>
 <table>
     <thead>
@@ -295,7 +311,7 @@
 </table>
 <button class="btn-calc" onclick="calculateRetention()">Calculate Retention</button>
 <h2> Innovative Teaching/Learning Methodologies</h2>
-<div class="container">
+<div>
     <table id="innovationTable">
         <thead>
             <tr class="header-row">
@@ -354,7 +370,7 @@
     </table>
     </div>
 <h2>Faculty Development / STTP</h2>
-<div class="container">  
+<div>  
     <button class="btn-calc btn-add" onclick="addFacultyRow()">+ Add Faculty Name</button>
         <table>
         <thead>
@@ -398,7 +414,7 @@
 <button class="btn-calc" onclick="calculateSTTP()">Calculate STTP Marks</button>
 </div>
 <h2>Academic Research</h2>
-<div class="container">
+<div>
         <table id="researchTable">
         <thead>
             <tr>
@@ -473,7 +489,7 @@
     </table>
 </div>
 <h2>Sponsored Research</h2>
-<div class="container">
+<div>
     <table>
         <thead>
             <tr>

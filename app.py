@@ -124,6 +124,24 @@ def six():
 def technical_support():
     return render_template("technical_support.html")
 
+@app.route("/seven")
+@app.route("/seven.html")
+@login_required
+def seven():
+    return render_template("seven.html")
+
+@app.route("/nine")
+@app.route("/nine.html")
+@login_required
+def nine():
+    return render_template("nine.html")
+
+@app.route("/ten")
+@app.route("/ten.html")
+@login_required
+def ten():
+    return render_template("ten.html")
+
 @app.route("/dashboard")
 @login_required
 def dashboard():

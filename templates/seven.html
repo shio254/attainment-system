@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Continuous Improvment</title>
+    <style>
+      body{
+            font-family: Arial, sans-serif;
+            padding:20px;
+            background:#f4f6f9; 
+        }
+        .container{
+            max-width:1200px;
+            margin:auto;
+            background:white;
+            padding:20px;
+            margin-bottom:20px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+        h2,h3{
+            text-align:center;
+        }
+        input{
+            padding:8px;
+            margin:10px 0;
+            width:100%;
+            box-sizing:border-box;
+        }
+        button{
+            padding:10px 20px;
+            background:#1e3a8a;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+        }
+        th,td{
+            border:1px solid black;
+            padding:8px;
+            text-align:center;
+        }        
+   
+    </style>
+      <script>
+        (function () {
+          const isStaticMode = window.location.protocol === "file:" ||
+            window.location.pathname.endsWith(".html") ||
+            window.location.pathname.includes("/templates/");
+
+          if (!isStaticMode) {
+            return;
+          }
+
+          document.addEventListener("DOMContentLoaded", function () {
+            const routeToFile = {
+              "/technical-support": "technical_support.html",
+              "/six": "technical_support.html",
+              "/seven": "seven.html",
+              "/nine": "nine.html",
+              "/ten": "ten.html"
+            };
+
+            document.querySelectorAll("a[href]").forEach(function (link) {
+              const target = link.getAttribute("href");
+              if (routeToFile[target]) {
+                link.setAttribute("href", routeToFile[target]);
+              }
+            });
+          });
+        })();
+      </script>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container">
+<h2>Program Outcomes</h2>
+<table border="1" cellspacing="0" cellpadding="6" id="poTable">
+  <tr>
+    <th>POs</th>
+    <th>Target Level</th>
+    <th>Attainment Level</th>
+    <th>Observations</th>
+  </tr>
+</table>
+</div>
+</div>
+<div class="container">
+<div>
+<h2>PO/PSO Attainment Table</h2>
+<table id="attainmentTable">
+    <thead>
+        <tr>
+            <th>PSO</th>
+            <th>Target Level</th>
+            <th>Attainment Level</th>
+            <th>Observation (Gap Identified)</th>
+            <th>Action Taken</th>
+            <th>Impact (in subsequent year)</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        <!-- Row Template -->
+        <tr>
+            <td><input type="text" placeholder="POS1"></td>
+            <td><input type="number" step="0.1"></td>
+            <td><input type="number" step="0.1"></td>
+            <td><textarea rows="2"></textarea></td>
+            <td><textarea rows="2"></textarea></td>
+            <td><textarea rows="2"></textarea></td>
+        </tr>
+    </tbody>
+</table>
+<button onclick="addRow2()">➕ Add Row</button>
+</div>
+</div>
+<div class="container">
+<div>
+<h2>Academic Audit Table</h2>
+<table border="1" cellspacing="0" cellpadding="6" id="auditTable">
+  <tr>
+    <th>S.No</th>
+    <th>Academic Audit Aspect</th>
+    <th>Description of Audit Process</th>
+    <th>Findings / Observations</th>
+    <th>Action Taken</th>
+    <th>Impact / Improvement</th>
+  </tr>
+</table>
+<br>
+<button onclick="addRow()">➕ Add Row</button>
+</div>
+</div>
+<div class="container">
+<div>
+<h2>Placement & Progress Table</h2>
+<label>Enter number of rows: </label>
+<input type="number" id="rowCount" min="1">
+<button onclick="createTable()">Create Table</button>
+<br><br>
+<div id="tableContainer"></div>
+</div>
+<div>
+<h2> Improvement in the Quality of Students Admitted</h2>
+<table border="1" cellspacing="0" cellpadding="8" id="table74">
+  <tr>
+    <th>Item</th>
+    <th>Details</th>
+    <th>CAY</th>
+    <th>CAYm1</th>
+    <th>CAYm2</th>
+  </tr>
+  <!-- National -->
+  <tr>
+    <td rowspan="3">National Level Entrance Examination</td>
+    <td>No. of Students admitted</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <tr>
+    <td>Opening Rank</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <tr>
+    <td>Closing Rank</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <!-- State -->
+  <tr>
+    <td rowspan="3">State Level Entrance</td>
+    <td>No. of Students admitted</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <tr>
+    <td>Opening Rank</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <tr>
+    <td>Closing Rank</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <!-- Lateral -->
+  <tr>
+    <td rowspan="3">Lateral Entry</td>
+    <td>No. of Students admitted</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <tr>
+    <td>Opening Rank</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <tr>
+    <td>Closing Rank</td>
+    <td><input type="number" class="c1"></td>
+    <td><input type="number" class="c2"></td>
+    <td><input type="number" class="c3"></td>
+  </tr>
+  <!-- Average -->
+  <tr>
+    <td colspan="2"><b>Average</b></td>
+    <td id="avgCAY">0</td>
+    <td id="avgCAYm1">0</td>
+    <td id="avgCAYm2">0</td>
+  </tr>
+  <!-- Total -->
+  <tr>
+    <td colspan="2"><b>Total</b></td>
+    <td id="totalCAY">0</td>
+    <td id="totalCAYm1">0</td>
+    <td id="totalCAYm2">0</td>
+  </tr>
+</table>
+</div>
+</div>
+<div style="text-align:right; margin-top:10px;">
+  <a href="/technical-support">
+    <button>Back to Technical Support</button>
+  </a>
+</div>
+<div style="text-align:right; margin-bottom:10px;">
+  <a href="/nine">
+    <button>Go to Mentoring System</button>
+  </a>
+</div>
+<script>
+function addRow2() {
+    let table = document.getElementById("tableBody");
+
+    let row = `
+    <tr>
+        <td><input type="text" placeholder="POS"></td>
+        <td><input type="number" step="0.1"></td>
+        <td><input type="number" step="0.1"></td>
+        <td><textarea rows="2"></textarea></td>
+        <td><textarea rows="2"></textarea></td>
+        <td><textarea rows="2"></textarea></td>
+    </tr>
+    `;
+
+    table.insertAdjacentHTML('beforeend', row);
+}
+let table = document.getElementById("poTable");
+// Create PO1–PO12
+for (let i = 1; i <= 12; i++) {
+  // Editable Statement Row
+  let titleRow = table.insertRow();
+  let titleCell = titleRow.insertCell(0);
+  titleCell.colSpan = 4;
+  titleCell.contentEditable = "true";
+  titleCell.innerHTML = "<b>PO" + i + ":</b> (Type your statement here)";
+  // Data Row
+  let row = table.insertRow();
+  row.innerHTML = `
+    <td>PO${i}</td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+    <td contenteditable="true"></td>
+  `;
+  // Action Row
+  let actionRow = table.insertRow();
+  let actionCell = actionRow.insertCell(0);
+  actionCell.colSpan = 4;
+  actionCell.innerHTML = `
+    <div id="actions${i}">
+      <div contenteditable="true">Action 1:</div>
+    </div>
+    <br>
+    <button onclick="addAction(${i})">➕ Add Action</button>
+  `;
+}
+// Add Action Function
+function addAction(poNumber) {
+  let container = document.getElementById("actions" + poNumber);
+  let count = container.children.length + 1;
+  let newAction = document.createElement("div");
+  newAction.contentEditable = "true";
+  newAction.innerHTML = "Action " + count + ":";
+  container.appendChild(newAction);
+}
+function addRow() {
+  let table = document.getElementById("auditTable");
+  let rowCount = table.rows.length;
+
+  let row = table.insertRow(-1);
+
+  for (let i = 0; i < 6; i++) {
+    let cell = row.insertCell(i);
+
+    if (i === 0) {
+      cell.innerHTML = rowCount; // Auto S.No
+      cell.contentEditable = "false";
+    } else {
+      cell.contentEditable = "true"; // You type everything
+      cell.innerHTML = "";
+    }
+  }
+}
+function createTable() {
+  let n = document.getElementById("rowCount").value;
+  let container = document.getElementById("tableContainer");
+  if (n <= 0) {
+    alert("Enter valid number of rows");
+    return;
+  }
+  let html = `
+  <table border="1" cellspacing="0" cellpadding="6">
+    <tr>
+      <th>S.No</th>
+      <th>Parameter</th>
+      <th>CAYm2</th>
+      <th>CAYm1</th>
+      <th>CAY</th>
+      <th>Observation (Trend)</th>
+      <th>Improvement Initiatives</th>
+    </tr>
+  `;
+  for (let i = 1; i <= n; i++) {
+    html += `
+    <tr>
+      <td>${i}</td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+      <td contenteditable="true"></td>
+    </tr>
+    `;
+  }
+  html += `</table>`;
+  container.innerHTML = html;
+}
+function calculate() {
+    let c1 = document.querySelectorAll(".c1");
+    let c2 = document.querySelectorAll(".c2");
+    let c3 = document.querySelectorAll(".c3");
+    let sum1 = 0, sum2 = 0, sum3 = 0;
+    c1.forEach(el => sum1 += Number(el.value) || 0);
+    c2.forEach(el => sum2 += Number(el.value) || 0);
+    c3.forEach(el => sum3 += Number(el.value) || 0);
+    let count = c1.length;
+    document.getElementById("totalCAY").innerText = sum1;
+    document.getElementById("totalCAYm1").innerText = sum2;
+    document.getElementById("totalCAYm2").innerText = sum3;
+    document.getElementById("avgCAY").innerText = count ? (sum1/count).toFixed(2) : 0;
+    document.getElementById("avgCAYm1").innerText = count ? (sum2/count).toFixed(2) : 0;
+    document.getElementById("avgCAYm2").innerText = count ? (sum3/count).toFixed(2) : 0;
+}
+// attach event automatically
+document.addEventListener("input", calculate);
+</script>
+</body>
+</html>
