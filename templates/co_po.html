@@ -184,9 +184,9 @@
             let gp = 0;
             if (percent >= cHigh) {
                 gp = gHigh;
-            } else if (percent >= cMedU && percent >= cMedL) {
+            } else if (percent >= cMedU && percent <= cMedL) {
                 gp = gMed;
-            } else if (percent >= cLow) {
+            } else if (percent < cLow) {
                 gp = gLow;
             } else {
                 gp = 0;

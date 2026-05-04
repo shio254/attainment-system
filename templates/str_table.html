@@ -1201,24 +1201,24 @@ function addSponsoredResearchRow() {
                 </div>
         </td>`;
 }
-function getMarks(amount) {
-    if (amount >= 20) return 5;
-    if (amount >= 16) return 4;
-    if (amount >= 12) return 3;
-    if (amount >= 8) return 2;
-    if (amount >= 4) return 1;
+function getSponsoredResearchMarks(amount) {
+    if (amount > 20) return 5;
+    if (amount >= 16 && amount < 20) return 4;
+    if (amount >= 12 && amount < 16) return 3;
+    if (amount >= 8 && amount < 12) return 2;
+    if (amount >= 4 && amount < 8) return 1;
     return 0;
 }
 function updateNBA() {
     let v1 = parseFloat(document.getElementById('amt1').value) || 0;
     let v2 = parseFloat(document.getElementById('amt2').value) || 0;
     let v3 = parseFloat(document.getElementById('amt3').value) || 0;
-    document.getElementById('sponsoredMark1').innerText = getMarks(v1);
-    document.getElementById('sponsoredMark2').innerText = getMarks(v2);
-    document.getElementById('sponsoredMark3').innerText = getMarks(v3);
+    document.getElementById('sponsoredMark1').innerText = getSponsoredResearchMarks(v1);
+    document.getElementById('sponsoredMark2').innerText = getSponsoredResearchMarks(v2);
+    document.getElementById('sponsoredMark3').innerText = getSponsoredResearchMarks(v3);
     let totalAmount = v1 + v2 + v3;
-    document.getElementById('dispTotal').value = totalAmount;
-    document.getElementById('dispMarks').innerText = getMarks(totalAmount) + " Marks ";
+    document.getElementById('dispTotal').value = totalAmount.toFixed(2);
+    document.getElementById('dispMarks').innerText = getSponsoredResearchMarks(totalAmount) + " Marks ";
 }
 function submitFPADSData() {
     alert("FPADS Data Submitted Successfully!");
