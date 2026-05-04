@@ -8,11 +8,9 @@
         (function () {
             const stylesheet = document.getElementById("mainStylesheet");
             const href = stylesheet.getAttribute("href") || "";
-
             if (href.includes("{{") || href.includes("}}")) {
                 stylesheet.setAttribute("href", "../static/style.css");
             }
-
             const isStaticMode = window.location.protocol === "file:" ||
                 window.location.pathname.endsWith(".html") ||
                 window.location.pathname.includes("/templates/");
@@ -20,7 +18,6 @@
             if (!isStaticMode) {
                 return;
             }
-
             document.addEventListener("DOMContentLoaded", function () {
                 const routeToFile = {
                     "/": "co_po.html",
@@ -34,7 +31,6 @@
                     "/login": "login.html",
                     "/logout": "login.html"
                 };
-
                 document.querySelectorAll("a[href]").forEach(function (link) {
                     const target = link.getAttribute("href");
                     if (routeToFile[target]) {
@@ -48,7 +44,7 @@
         body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; padding: 30px; }
         .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         h2 { color: #0056b3; text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; table-layout: fixed; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px }
         th, td { border: 1px solid #999; padding: 10px; text-align: center; font-size: 0.9em; }
         th { background-color: #f8f9fa; color: #333; }       
         .header-row { background-color: #e9ecef; font-weight: bold; }
@@ -58,86 +54,11 @@
         input:focus { outline: 2px solid #0056b3; }
         .btn-calc { display: block; width: 200px; margin: 20px auto; padding: 12px; background: #0056b3; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .btn-calc:hover { background: #004494; }
-        #researchTable {
-            table-layout: auto;
-        }
-        #researchTable th,
-        #researchTable td {
-            white-space: normal;
-            word-break: break-word;
-            overflow-wrap: anywhere;
-        }
-        #researchTable input,
-        #researchTable select,
-        #researchTable textarea {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        .wide-table-section {
-            max-width: none;
-            overflow-x: auto;
-        }
-        #fpadsTable,
-        #visitingFacultyTable {
-            table-layout: auto;
-            min-width: 1200px;
-        }
-        #visitingFacultyTable {
-            min-width: 1500px;
-        }
-        #fpadsTable th,
-        #fpadsTable td,
-        #visitingFacultyTable th,
-        #visitingFacultyTable td {
-            white-space: normal;
-            overflow-wrap: anywhere;
-            word-break: normal;
-            vertical-align: middle;
-        }
-        #fpadsTable th,
-        #visitingFacultyTable th {
-            line-height: 1.3;
-        }
-        #fpadsTable input,
-        #fpadsTable select,
-        #visitingFacultyTable input {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-        #fpadsTable input[type="file"],
-        #visitingFacultyTable input[type="file"] {
-            font-size: 0.85em;
-        }
-        #fpadsTable .year-box input {
-            display: block;
-            margin: 3px auto;
-        }
-        #fpadsTable th:nth-child(1) { width: 70px; }
-        #fpadsTable th:nth-child(2) { width: 190px; }
-        #fpadsTable th:nth-child(3) { width: 240px; }
-        #fpadsTable th:nth-child(4) { width: 110px; }
-        #fpadsTable th:nth-child(5) { width: 220px; }
-        #fpadsTable th:nth-child(6) { width: 240px; }
-        #fpadsTable th:nth-child(7) { width: 150px; }
-        #visitingFacultyTable th:nth-child(1) { width: 75px; }
-        #visitingFacultyTable th:nth-child(2) { width: 170px; }
-        #visitingFacultyTable th:nth-child(3) { width: 230px; }
-        #visitingFacultyTable th:nth-child(4) { width: 240px; }
-        #visitingFacultyTable th:nth-child(5) { width: 170px; }
-        #visitingFacultyTable th:nth-child(6) { width: 260px; }
-        #visitingFacultyTable th:nth-child(7) { width: 160px; }
-        #visitingFacultyTable th:nth-child(8) { width: 190px; }
-        #visitingFacultyTable th:nth-child(9) { width: 170px; }
     </style>
 </head>
 <body>
-
-
-<div>
+<div class="container">
     <h2>Student Teacher Ratio (STR) = S / F</h2>
-    
     <table id="strTable">
         <thead>
             <tr>
@@ -174,18 +95,14 @@
             </tr>
         </tfoot>
     </table>
-
     <button class="btn-calc" onclick="calculateMarks()">Calculate NBA Marks</button>
-
     <div id="marksResult" class="marks-section" style="display:none;">
         <h3 id="marksDisplay" style="margin:0; color:#1e3a8a;"></h3>
         <p id="marksDesc" style="margin:5px 0 0; color:#64748b;"></p>
     </div>
-
     <a href="/str" class="nav-link">← Back to Program Setup</a>
 </div>
-
-<div>
+<div class="container">
     <h2>Faculty Details</h2>
 <table>
     <thead>
@@ -214,6 +131,7 @@
     </tbody>
 </table>
 </div>
+<div class="container">
 <h2>Faculty Cadre Proportion</h2>
 <table>
     <thead>
@@ -277,6 +195,8 @@
 </table>
 <button class="btn-calc" onclick="calculateCadre()">Calculate Cadre Marks</button>
 <div id="cadreMarks" style="text-align:center; font-weight:bold;"></div>
+</div>
+<div class="container">
 <h2>Faculty Qualification</h2>
 <p>(FQ = 2.5 × [(10X + 4Y)/F] where X is no. of regular faculty with Ph.D., Y is no. of regular faculty with M.Tech., F is no. of regular faculty required to comply with 20:1 Faculty Student ratio)</p>
 <table>
@@ -319,7 +239,6 @@
 </table>
 <button class="btn-calc" onclick="calculateFQ()">Calculate FQ Marks</button>
 <div id="fqMarks" style="text-align:center; font-weight:bold; margin-top:10px;"></div>
-<h2>Faculty Retention</h2>
 <table>
     <thead>
         <tr class="header-row">
@@ -327,6 +246,9 @@
             <th>Marks</th>
         </tr>
     </thead>
+</div>
+    <div class="container">
+<h2>Faculty Retention</h2>
     <tbody>
         <tr><td>>= 90%</td><td>25</td></tr>
         <tr><td>>= 75%</td><td>20</td></tr>
@@ -366,8 +288,10 @@
     </tbody>
 </table>
 <button class="btn-calc" onclick="calculateRetention()">Calculate Retention</button>
+    </div>
+<div class="container">
 <h2> Innovative Teaching/Learning Methodologies</h2>
-<div>
+<div class="container">
     <table id="innovationTable">
         <thead>
             <tr class="header-row">
@@ -396,6 +320,7 @@
         </tbody>
     </table>
     <button class="btn-calc" onclick="addInnovationRow()">+ Add Innovation Row</button>
+</div>
     <h3>Innovation Assessment Summary</h3>
     <table>
         <tr class="header-row">
@@ -425,8 +350,8 @@
         </tr>
     </table>
     </div>
-<h2>Faculty Development / STTP</h2>
-<div>  
+ <div class="container">
+<h2>Faculty Development / STTP</h2> 
     <button class="btn-calc btn-add" onclick="addFacultyRow()">+ Add Faculty Name</button>
         <table>
         <thead>
@@ -469,8 +394,8 @@
     </table>
 <button class="btn-calc" onclick="calculateSTTP()">Calculate STTP Marks</button>
 </div>
+<div class="container">
 <h2>Academic Research</h2>
-<div>
         <table id="researchTable">
         <thead>
             <tr>
@@ -522,30 +447,31 @@
             <td>CAYm1</td>
             <td><input type="number" id="pub1" oninput="calculateAllAverages()"></td>
             <td><input type="text"></td>
-            <td><input type="number" id="researchMark1" oninput="validateAndCalc(this)"></td>
+            <td><input type="number" id="mark1" oninput="validateAndCalc(this)"></td>
         </tr>
         <tr>
             <td>CAYm2</td>
             <td><input type="number" id="pub2" oninput="calculateAllAverages()"></td>
             <td><input type="text"></td>
-            <td><input type="number" id="researchMark2" oninput="validateAndCalc(this)"></td>
+            <td><input type="number" id="mark2" oninput="validateAndCalc(this)"></td>
         </tr>
         <tr>
             <td>CAYm3</td>
             <td><input type="number" id="pub3" oninput="calculateAllAverages()"></td>
             <td><input type="text"></td>
-            <td><input type="number" id="researchMark3" oninput="validateAndCalc(this)"></td>
+            <td><input type="number" id="mark3" oninput="validateAndCalc(this)"></td>
         </tr>
         <tr class="average-row">
             <td>Average</td>
             <td><input type="number" id="avgPubs" readonly placeholder="Avg Pubs"></td>
             <td>—</td>
-            <td><input type="number" id="avgResearchMarks" readonly placeholder="Avg Marks"></td>
+            <td><input type="number" id="avgMarks" readonly placeholder="Avg Marks"></td>
         </tr>
     </table>
 </div>
+    </div>
+<div class="container">
 <h2>Sponsored Research</h2>
-<div>
     <table>
         <thead>
             <tr>
@@ -579,9 +505,9 @@
             </tr>
         </tbody>
     </table>
-    <button class="btn-add" onclick="addSponsoredResearchRow()">+ Add Row</button>
+    <button class="btn-add" onclick="addRow()">+ Add Row</button>
     <div class="summary-title">Year-wise Funding Summary (Cumulative)</div>
-    <table id="sponsoredSummaryTable">
+    <table id="summaryTable">
         <thead>
             <tr>
                 <th style="width: 20%;">Year</th>
@@ -593,17 +519,17 @@
             <tr>
                 <td>CAYm1</td>
                 <td><input type="number" id="amt1" oninput="updateNBA()" placeholder="0"></td>
-                <td id="sponsoredMark1" class="marks-output">0</td>
+                <td id="mark1" class="marks-output">0</td>
             </tr>
             <tr>
                 <td>CAYm2</td>
                 <td><input type="number" id="amt2" oninput="updateNBA()" placeholder="0"></td>
-                <td id="sponsoredMark2" class="marks-output">0</td>
+                <td id="mark2" class="marks-output">0</td>
             </tr>
             <tr>
                 <td>CAYm3</td>
                 <td><input type="number" id="amt3" oninput="updateNBA()" placeholder="0"></td>
-                <td id="sponsoredMark3" class="marks-output">0</td>
+                <td id="mark3" class="marks-output">0</td>
             </tr>
             <tr>
                 <td style="font-weight: bold;">Cumulative Total</td>
@@ -616,237 +542,240 @@
         </tbody>
     </table>
 </div>
-
-<div class="wide-table-section">
-    <h2>Faculty Performance Appraisal and Development System (FPADS)</h2>
-    <table id="fpadsTable">
-        <thead>
-            <tr>
-                <th>S.No</th>
-                <th>Component</th>
-                <th>Description</th>
-                <th>Available</th>
-                <th>Years (CAYm1 / CAYm2 / CAYm3)</th>
-                <th>Evidence (Link + Document)</th>
-                <th>Marks</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Performance Appraisal Policy</td>
-                <td>Policy covering teaching, research, administration and professional activities</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Implementation</td>
-                <td>Appraisal system implemented annually with proper evaluation</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Feedback Mechanism</td>
-                <td>Student, peer and HOD feedback system</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Self-Appraisal</td>
-                <td>Faculty submit self-appraisal reports</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Development Initiatives</td>
-                <td>FDPs, workshops, seminars and training programs</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Link to Promotion / Rewards</td>
-                <td>Linked to promotions, increments and incentives</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Documentation</td>
-                <td>Proper record maintenance and digital repository</td>
-                <td>
-                    <select>
-                        <option value="">Select</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </td>
-                <td class="year-box">
-                    <input type="text" placeholder="CAYm1 (e.g., 2025)">
-                    <input type="text" placeholder="CAYm2 (e.g., 2024)">
-                    <input type="text" placeholder="CAYm3 (e.g., 2023)">
-                </td>
-                <td>
-                    <input type="text" placeholder="Paste link"><br><br>
-                    <input type="file">
-                </td>
-                <td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
-            </tr>
-        </tbody>
-    </table>
-    <button class="btn-calc" onclick="submitFPADSData()">Submit</button>
-</div>
-
-<div class="wide-table-section">
-    <h2>Visiting / Adjunct / Emeritus Faculty</h2>
-    <table id="visitingFacultyTable">
-        <thead>
-            <tr>
-                <th>S. No.</th>
-                <th>Name of Faculty</th>
-                <th>Category (Visiting/Adjunct/Emeritus)</th>
-                <th>Affiliation (Organization/Institution)</th>
-                <th>Area of Expertise</th>
-                <th>Nature of Contribution (Research/Teaching/Consulting)</th>
-                <th>No. of Interaction Hours</th>
-                <th>Year (CAYm1/CAYm2/CAYm3)</th>
-                <th>Evidence</th>
-            </tr>
-        </thead>
-        <tbody id="visitingFacultyBody">
-        </tbody>
-    </table>
-    <button class="btn-calc" onclick="addVisitingFacultyRow()">+ Add Row</button>
-    <h3>Year-wise Interaction Summary</h3>
-    <table id="visitingSummaryTable">
-        <tr class="header-row">
-            <th>Year</th>
-            <th>Total Experts</th>
-            <th>Total Interaction Hours</th>
-            <th>Marks Awarded</th>
-        </tr>
+<div class="container">
+<h2>Faculty Performance Appraisal and Development System (FPADS)</h2>
+<table>
+<thead>
+<tr>
+    <th>S.No</th>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Available</th>
+    <th>Years (CAYm1 / CAYm2 / CAYm3)</th>
+    <th>Evidence (Link + Document)</th>
+    <th>Marks</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1 -->
+<tr>
+<td>1</td>
+<td>Performance Appraisal Policy</td>
+<td>Policy covering teaching, research, administration and professional activities</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</td>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+<!-- Row 2 -->
+<tr>
+<td>2</td>
+<td>Implementation</td>
+<td>Appraisal system implemented annually with proper evaluation</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+<!-- Row 3 -->
+<tr>
+<td>3</td>
+<td>Feedback Mechanism</td>
+<td>Student, peer and HOD feedback system</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</td>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+<!-- Row 4 -->
+<tr>
+<td>4</td>
+<td>Self-Appraisal</td>
+<td>Faculty submit self-appraisal reports</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</td>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+<!-- Row 5 -->
+<tr>
+<td>5</td>
+<td>Development Initiatives</td>
+<td>FDPs, workshops, seminars and training programs</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</td>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+<!-- Row 6 -->
+<tr>
+<td>6</td>
+<td>Link to Promotion / Rewards</td>
+<td>Linked to promotions, increments and incentives</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</td>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+<!-- Row 7 -->
+<tr>
+<td>7</td>
+<td>Documentation</td>
+<td>Proper record maintenance and digital repository</td>
+<td>
+<select>
+<option value="">Select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</td>
+<td class="year-box">
+<input type="text" placeholder="CAYm1 (e.g., 2025)">
+<input type="text" placeholder="CAYm2 (e.g., 2024)">
+<input type="text" placeholder="CAYm3 (e.g., 2023)">
+</td>
+<td>
+<input type="text" placeholder="Paste link"><br><br>
+<input type="file">
+</td>
+<td><input type="number" placeholder="Enter Marks" min="0" max="100"></td>
+</tr>
+</tbody>
+</table>
+<button onclick="submitData()">Submit</button>
+</div> 
+<div>
+<h2>Visiting / Adjunct / Emeritus Faculty</h2>
+<table border="1" width="100%" id="facultyTable">
+    <thead>
         <tr>
-            <td>CAYm1</td>
-            <td><input type="number" class="visiting-experts"></td>
-            <td><input type="number" class="visiting-hours"></td>
-            <td><input type="number" class="visiting-marks"></td>
+            <th>S. No.</th>
+            <th>Name of Faculty</th>
+            <th>Category(Visiting/Adjunct/Emeritus)</th>
+            <th>Affiliation(organization/ institution)</th>
+            <th>Area of Expertise</th>
+            <th>Nature of Contribution(Research/Teaching/Consulting)</th>
+            <th>No of Interaction Hours</th>
+            <th>Year(caym1/caym2/caym3)</th>
+            <th>Evidence</th>
         </tr>
-        <tr>
-            <td>CAYm2</td>
-            <td><input type="number" class="visiting-experts"></td>
-            <td><input type="number" class="visiting-hours"></td>
-            <td><input type="number" class="visiting-marks"></td>
-        </tr>
-        <tr>
-            <td>CAYm3</td>
-            <td><input type="number" class="visiting-experts"></td>
-            <td><input type="number" class="visiting-hours"></td>
-            <td><input type="number" class="visiting-marks"></td>
-        </tr>
-        <tr class="total-row">
-            <td>Total / Average</td>
-            <td id="visitingTotalExperts">0</td>
-            <td id="visitingTotalHours">0</td>
-            <td id="visitingAvgMarks">0</td>
-        </tr>
-    </table>
-</div>
-
-
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+</table>
+<br>
+<button onclick="addRow()">Add Row</button>
+<h3>Year-wise Interaction Summary</h3>
+<table border="1" id="summaryTable">
+  <tr>
+    <th>Year</th>
+    <th>Total Experts</th>
+    <th>Total Interaction Hours</th>
+    <th>Marks Awarded</th>
+  </tr>
+  <tr>
+    <td>CAYm1</td>
+    <td><input type="number" class="experts"></td>
+    <td><input type="number" class="hours"></td>
+    <td><input type="number" class="marks"></td>
+  </tr>
+  <tr>
+    <td>CAYm2</td>
+    <td><input type="number" class="experts"></td>
+    <td><input type="number" class="hours"></td>
+    <td><input type="number" class="marks"></td>
+  </tr>
+  <tr>
+    <td>CAYm3</td>
+    <td><input type="number" class="experts"></td>
+    <td><input type="number" class="hours"></td>
+    <td><input type="number" class="marks"></td>
+  </tr>
+  <tr>
+    <td><b>Total / Average</b></td>
+    <td id="totalExperts">0</td>
+    <td id="totalHours">0</td>
+    <td id="avgMarks">0</td>
+  </tr>
+</table>
+</div>  
     <div style="text-align:right;">
         <a href="/development"><button>Go to Development Activities</button></a>
     </div>
@@ -859,23 +788,19 @@
 <script>
 const programs = JSON.parse(localStorage.getItem("programList")) || [];
 const tableBody = document.getElementById("tableBody");
-
 function initTable() {
     tableBody.innerHTML = "";
     let ugCounter = 1;
     let pgCounter = 1;
-
     if (programs.length === 0) {
         tableBody.innerHTML = `<tr><td colspan="4">No program data found. Please go back and add programs.</td></tr>`;
         return;
     }
-
     programs.forEach((prog) => {
         const isUG = prog.type === "UG";
         const prefix = isUG ? "u" : "p";
         const currentId = isUG ? ugCounter++ : pgCounter++;
         const years = isUG ? 3 : 2; // UG has 3 years (2nd, 3rd, 4th), PG has 2
-
         // 1. Create Individual Year Rows (e.g., u1.1, u1.2, u1.3)
         for (let i = 1; i <= years; i++) {
             let row = `<tr>
@@ -886,7 +811,6 @@ function initTable() {
             </tr>`;
             tableBody.innerHTML += row;
         }
-
         // 2. Create the Summary Row (e.g., UG1, PG1)
         let totalRow = `<tr style="font-weight:bold; background:#f8fafc;">
             <td>${prog.type}${currentId}</td>
@@ -897,7 +821,6 @@ function initTable() {
         tableBody.innerHTML += totalRow;
     });
 }
-
 // Function to handle the vertical math and SFR calculation
 function calculateNBA(manualUpdate = false) {
     const sFields = [
@@ -905,20 +828,15 @@ function calculateNBA(manualUpdate = false) {
         document.getElementById("grandS_1"),
         document.getElementById("grandS_2")
     ];
-
     let ugIdx = 1;
     let pgIdx = 1;
     let grandTotalS = [0, 0, 0]; // Index 0=CAY, 1=CAYm1, 2=CAYm2
-
     const useProgramTotals = programs.length > 0 && !manualUpdate;
-
     if (useProgramTotals) {
         programs.forEach(prog => {
             const prefix = prog.type === "UG" ? "u" : "p";
             const id = prog.type === "UG" ? ugIdx++ : pgIdx++;
-            
             const years = ["cay", "caym1", "caym2"];
-            
             years.forEach((yr, colIdx) => {
                 let sum = 0;
                 // Sum all inputs for this specific program and year
@@ -937,7 +855,6 @@ function calculateNBA(manualUpdate = false) {
         // Manual entry path: read whatever user typed into S fields
         grandTotalS = sFields.map(field => parseFloat(field.value) || 0);
     }
-
     // Calculate SFR for each column and average
     let sfrValues = [];
     for (let i = 0; i < 3; i++) {
@@ -950,8 +867,6 @@ function calculateNBA(manualUpdate = false) {
     const avgSFR = (sfrValues.reduce((a, b) => a + b, 0) / 3).toFixed(2);
     document.getElementById('avgSFR').innerText = avgSFR;
 }
-
-
 // Add calculateMarks() for the NBA marks button
 function calculateMarks() {
     const avg = parseFloat(document.getElementById('avgSFR').innerText) || 0;
@@ -970,7 +885,6 @@ function calculateMarks() {
     display.innerText = `NBA Marks Awarded: ${marks} / 20`;
     desc.innerText = `Based on Average SFR = ${avg}`;
 }
-
 function calculateFQ() {
     let fqValues = [];
     for (let i = 0; i < 3; i++) {
@@ -1136,11 +1050,10 @@ function calculateSTTP() {
     }    
     document.getElementById("avgAssessment").innerText = avg.toFixed(2);
 }
-document.addEventListener("DOMContentLoaded", function() {
+window.onload = function() {
     initTable();
     addFacultyRow();
-    bindVisitingSummaryInputs();
-});
+};
 function addResearchRow() {
         let table = document.getElementById("researchTable");
         let rowCount = table.rows.length;
@@ -1176,12 +1089,13 @@ function calculateAllAverages() {
     let p2 = parseFloat(document.getElementById("pub2").value) || 0;
     let p3 = parseFloat(document.getElementById("pub3").value) || 0;   
     document.getElementById("avgPubs").value = ((p1 + p2 + p3) / 3).toFixed(2);
-    let m1 = parseFloat(document.getElementById("researchMark1").value) || 0;
-    let m2 = parseFloat(document.getElementById("researchMark2").value) || 0;
-    let m3 = parseFloat(document.getElementById("researchMark3").value) || 0;
-    document.getElementById("avgResearchMarks").value = ((m1 + m2 + m3) / 3).toFixed(2);
+    // mark1/2/3 are <td> cells set by updateNBA() — read innerText, not .value
+    let m1 = parseFloat(document.getElementById("mark1").innerText) || 0;
+    let m2 = parseFloat(document.getElementById("mark2").innerText) || 0;
+    let m3 = parseFloat(document.getElementById("mark3").innerText) || 0;
+    document.getElementById("avgMarks").value = ((m1 + m2 + m3) / 3).toFixed(2);
 }
-function addSponsoredResearchRow() {
+function addRow() {
         let tbody = document.getElementById("mainBody");
         let count = tbody.rows.length + 1;
         let row = tbody.insertRow();
@@ -1213,21 +1127,23 @@ function updateNBA() {
     let v1 = parseFloat(document.getElementById('amt1').value) || 0;
     let v2 = parseFloat(document.getElementById('amt2').value) || 0;
     let v3 = parseFloat(document.getElementById('amt3').value) || 0;
-    document.getElementById('sponsoredMark1').innerText = getMarks(v1);
-    document.getElementById('sponsoredMark2').innerText = getMarks(v2);
-    document.getElementById('sponsoredMark3').innerText = getMarks(v3);
+    document.getElementById('mark1').innerText = getMarks(v1);
+    document.getElementById('mark2').innerText = getMarks(v2);
+    document.getElementById('mark3').innerText = getMarks(v3);
     let totalAmount = v1 + v2 + v3;
     document.getElementById('dispTotal').value = totalAmount;
     document.getElementById('dispMarks').innerText = getMarks(totalAmount) + " Marks ";
 }
-function submitFPADSData() {
+// Submit Function
+function submitData(){
     alert("FPADS Data Submitted Successfully!");
 }
-function addVisitingFacultyRow() {
-    const tableBody = document.getElementById("visitingFacultyBody");
-    const row = document.createElement("tr");
+let count = 1;
+function addRow() {
+    let table = document.getElementById("tbody");
+    let row = document.createElement("tr");
     row.innerHTML = `
-        <td>${tableBody.rows.length + 1}</td>
+        <td>${count++}</td>
         <td><input type="text"></td>
         <td><input type="text"></td>
         <td><input type="text"></td>
@@ -1240,30 +1156,32 @@ function addVisitingFacultyRow() {
             <input type="file">
         </td>
     `;
-    tableBody.appendChild(row);
+    table.appendChild(row);
 }
-function updateVisitingSummary() {
-    let totalExperts = 0;
-    let totalHours = 0;
-    let totalMarks = 0;
-    const experts = document.querySelectorAll(".visiting-experts");
-    const hours = document.querySelectorAll(".visiting-hours");
-    const marks = document.querySelectorAll(".visiting-marks");
-    experts.forEach((input, index) => {
-        totalExperts += Number(input.value) || 0;
-        totalHours += Number(hours[index].value) || 0;
-        totalMarks += Number(marks[index].value) || 0;
+window.onload = function () {
+    function calculate() {
+        let totalExperts = 0;
+        let totalHours = 0;
+        let totalMarks = 0;
+        let experts = document.getElementsByClassName("experts");
+        let hours = document.getElementsByClassName("hours");
+        let marks = document.getElementsByClassName("marks");
+        for (let i = 0; i < experts.length; i++) {
+            totalExperts += Number(experts[i].value) || 0;
+            totalHours += Number(hours[i].value) || 0;
+            totalMarks += Number(marks[i].value) || 0;
+        }
+        let avgMarks = marks.length ? (totalMarks / marks.length).toFixed(2) : 0;
+        document.getElementById("totalExperts").innerText = totalExperts;
+        document.getElementById("totalHours").innerText = totalHours;
+        document.getElementById("avgMarks").innerText = avgMarks;
+    }
+    // attach event to inputs
+    let inputs = document.querySelectorAll("#summaryTable input");
+    inputs.forEach(input => {
+        input.addEventListener("input", calculate);
     });
-    document.getElementById("visitingTotalExperts").innerText = totalExperts;
-    document.getElementById("visitingTotalHours").innerText = totalHours;
-    document.getElementById("visitingAvgMarks").innerText = marks.length ? (totalMarks / marks.length).toFixed(2) : "0";
-}
-function bindVisitingSummaryInputs() {
-    document.querySelectorAll("#visitingSummaryTable input").forEach(input => {
-        input.addEventListener("input", updateVisitingSummary);
-    });
-}
-
+};
 </script>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>

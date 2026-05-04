@@ -61,6 +61,15 @@
             display: block;
             overflow-x: auto;
         }
+
+        .marks-entry-table input {
+            min-width: 160px;
+            background: #fff;
+        }
+
+        .marks-entry-table input[type="number"] {
+            min-width: 120px;
+        }
     </style>
 
 </head>
@@ -127,7 +136,7 @@
             numStudents = parseInt(document.getElementById("numStudents").value);
             if (isNaN(numStudents)) { alert("Please enter the number of students"); return; }
             generateCOFilter();
-            let table = "<h3>Student Marks Entry</h3><table><tr><th>Student Name</th>";
+            let table = "<h3>Student Marks Entry</h3><table class='marks-entry-table'><tr><th>Student Name</th>";
             for (let i = 1; i <= numCO; i++) {
                 let topic = document.getElementById("topic" + i).value;
                 table += `
@@ -139,7 +148,7 @@
             }
             table += "</tr>";
             for (let s = 1; s <= numStudents; s++) {
-                table += `<tr><td><input type='text'></td>`;
+                table += `<tr><td><input type="text" id="studentName${s}" placeholder="Enter student name"></td>`;
                 for (let i = 1; i <= numCO; i++) {
                     table += `
             <td class="co${i}">${document.getElementById("topic" + i).value}</td>
