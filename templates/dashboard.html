@@ -227,12 +227,29 @@
     <script>
         let programChartInst = null;
         let facultyChartInst = null;
+        const isStaticMode = window.location.protocol === "file:" ||
+            window.location.pathname.endsWith(".html") ||
+            window.location.pathname.includes("/templates/");
+        const mockPrograms = [
+            { name: "CSE", type: "UG" },
+            { name: "ECE", type: "UG" },
+            { name: "MBA", type: "PG" },
+            { name: "M.Tech CSE", type: "PG" }
+        ];
+        const mockFaculty = [
+            { name: "Dr. Rao", qualification: "Ph.D" },
+            { name: "Dr. Iyer", qualification: "Ph.D" },
+            { name: "Ms. Nair", qualification: "M.Tech" },
+            { name: "Mr. Das", qualification: "M.Tech" },
+            { name: "Ms. Paul", qualification: "M.Sc" }
+        ];
 
         async function loadDashboard() {
             // --- Load Programs from server API ---
             try {
-                const progResp = await fetch('/api/programs');
-                const programs = await progResp.json();
+                const programs = isStaticMode
+                    ? mockPrograms
+                    : await (await fetch('/api/programs')).json();
 
                 const ugCount = programs.filter(p => p.type === 'UG').length;
                 const pgCount = programs.filter(p => p.type === 'PG').length;
@@ -266,8 +283,9 @@
 
             // --- Load Faculty from server API ---
             try {
-                const facResp = await fetch('/api/faculty');
-                const faculty = await facResp.json();
+                const faculty = isStaticMode
+                    ? mockFaculty
+                    : await (await fetch('/api/faculty')).json();
                 const totalFaculty = Array.isArray(faculty) ? faculty.length : 0;
 
                 document.getElementById('stat-faculty').innerText = totalFaculty;
@@ -294,8 +312,9 @@
                 });
 
                 // STR stat
-                const progResp2 = await fetch('/api/programs');
-                const programs2 = await progResp2.json();
+                const programs2 = isStaticMode
+                    ? mockPrograms
+                    : await (await fetch('/api/programs')).json();
                 document.getElementById('stat-students').innerText = programs2.length > 0 ? '(enter in STR page)' : '--';
                 document.getElementById('stat-str').innerText = totalFaculty > 0 ? 'See STR page' : '--';
 
